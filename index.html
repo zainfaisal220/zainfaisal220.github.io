@@ -46,6 +46,16 @@
             transform: translateY(-1px);
         }
         
+        .project-featured {
+            border: 2px solid #3b82f6;
+            background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+        }
+        
+        .project-featured .project-tag {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+        }
+        
         /* Loading state */
         .loading {
             opacity: 0;
@@ -93,7 +103,6 @@
                      role="img" 
                      aria-label="Muhammad Zain Faisal's profile picture">
                     <img src="graphic/zpiic.jpg" alt="Muhammad Zain Faisal's profile picture" class="w-full h-full object-cover rounded-full" />
-
                 </div>
                 <div class="text-center md:text-left">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">Muhammad Zain Faisal</h1>
@@ -120,8 +129,6 @@
                             <i data-lucide="phone" class="w-4 h-4" aria-hidden="true"></i>
                             +92 324 8474434
                         </a>
-                    </div>
-                    
                     </div>
                 </div>
             </div>
@@ -159,8 +166,7 @@
             </div>
           </div>
         </div>
-      </section>
-      
+    </section>
 
     <!-- Main Content -->
     <main id="main-content" class="container mx-auto px-4 max-w-6xl py-12">
@@ -271,7 +277,6 @@
                     LinkedIn
                 </a>
               </div>
-              
         </div>
     </footer>
 
@@ -293,30 +298,33 @@
             "Excelled in NLP Projects",
             "Published Deep Learning Research",
             "University Honors"
-        ].filter(Boolean); // Remove any falsy values
+        ].filter(Boolean);
 
         const projects = [
-    {
-        title: "RAG System Chat Bot",
-        description: "Built a Retrieval-Augmented Generation system using LangChain, Python, and Hugging Face transformers for enhanced AI-powered question answering and content generation.",
-        technologies: ["LangChain", "Python", "Hugging Face", "RAG", "NLP"],
-        link: "https://github.com/zainfaisal220/RAG_Project"
-    },
-    {
-        title: "Face Detection and Recognition Library",
-        description: "Created a comprehensive face detection and recognition system with high accuracy and real-time processing capabilities.",
-        technologies: ["Computer Vision", "Deep Learning", "Python", "OpenCV"]
-        // No link provided for this one
-    },
-    {
-        title: "Movie Recommendation System",
-        description: "Built a sophisticated recommendation system using collaborative and content-based filtering techniques.",
-        technologies: ["Machine Learning", "Python", "Pandas", "Scikit-learn"],
-        link: "https://github.com/zainfaisal220/Movie_Rec_System"
-    }
-].filter(project => project.title && project.description);
-
-        
+            {
+                title: "Sumlyzer – Smart PDF Summary & Insight Generator",
+                description: "Advanced AI-powered document analysis system with real-time Q&A capabilities. Features multi-document processing, intelligent text chunking, vector-based search, and interactive querying interface with glassmorphism design.",
+                technologies: ["LangChain", "Python", "RAG", "NLP", "Ollama", "DeepSeek", "Faiss DB"],
+                link: "https://github.com/zainfaisal220/Sumlyzer"
+            },
+            {
+                title: "RAG System Chat Bot",
+                description: "Built a Retrieval-Augmented Generation system using LangChain, Python, and Hugging Face transformers for enhanced AI-powered question answering and content generation.",
+                technologies: ["LangChain", "Python", "Hugging Face", "RAG", "NLP"],
+                link: "https://github.com/zainfaisal220/RAG_Project"
+            },
+            {
+                title: "Face Detection and Recognition Library",
+                description: "Created a comprehensive face detection and recognition system with high accuracy and real-time processing capabilities.",
+                technologies: ["Computer Vision", "Deep Learning", "Python", "OpenCV"]
+            },
+            {
+                title: "Movie Recommendation System",
+                description: "Built a sophisticated recommendation system using collaborative and content-based filtering techniques.",
+                technologies: ["Machine Learning", "Python", "Pandas", "Scikit-learn"],
+                link: "https://github.com/zainfaisal220/Movie_Rec_System"
+            }
+        ].filter(project => project.title && project.description);
 
         const certifications = [
             "Supervised Machine Learning: Regression and Classification - Coursera",
@@ -349,9 +357,10 @@
             {
                 title: "💻 Programming & Development",
                 skills: [
-                    "Languages: Python, C++, C",
+                    "Languages: Python, C++, C, JavaScript",
                     "Object-Oriented Programming (OOP)",
-                    "Data Structures & Algorithms"
+                    "Data Structures & Algorithms",
+                    "Web Technologies: HTML5, CSS3, DOM APIs"
                 ]
             },
             {
@@ -427,7 +436,7 @@
                             <div class="flex flex-wrap gap-3">
                                 ${skillsHtml}
                             </div>
-                        </div>
+                        </div> 
                     `);
                     
                     container.appendChild(card);
@@ -435,7 +444,7 @@
             }, 'Error populating skills');
         }
 
-        // Populate projects with error handling
+        // Populate projects with enhanced featured project display
         function populateProjects() {
             return safeExecute(() => {
                 const container = document.getElementById('projects-grid');
@@ -446,21 +455,32 @@
                         .map(tech => `<span class="px-2 py-1 text-xs border border-gray-300 rounded-md text-gray-600">${escapeHtml(tech)}</span>`)
                         .join('');
 
-                    const card = createElement('div', 'bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 card-hover', `
-                        <div class="p-6 border-b border-gray-200">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">${escapeHtml(project.title)}</h3>
-                            <p class="text-gray-600">${escapeHtml(project.description)}</p>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                ${techHtml}
+                    // Regular styling for all projects
+                    const cardClass = 'bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 card-hover';
+
+                    const featuredBadge = '';
+
+                    const projectDetails = '';
+
+                    const card = createElement('div', cardClass, `
+                        <div class="relative">
+                            ${featuredBadge}
+                            <div class="p-6 border-b border-gray-200">
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">${escapeHtml(project.title)}</h3>
+                                <p class="text-gray-600">${escapeHtml(project.description)}</p>
+                                ${projectDetails}
                             </div>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm hover:bg-gray-50 transition-colors flex items-center gap-2" 
-                                    onclick="viewProject('${escapeHtml(project.title)}')"
-                                    aria-label="View ${escapeHtml(project.title)} project">
-                                <i data-lucide="external-link" class="w-4 h-4" aria-hidden="true"></i>
-                                View Project
-                            </button>
+                            <div class="p-6">
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    ${techHtml}
+                                </div>
+                                <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm hover:bg-gray-50 transition-colors flex items-center gap-2" 
+                                        onclick="viewProject('${escapeHtml(project.title)}')"
+                                        aria-label="View ${escapeHtml(project.title)} project">
+                                    <i data-lucide="external-link" class="w-4 h-4" aria-hidden="true"></i>
+                                    View Project
+                                </button>
+                            </div>
                         </div>
                     `, { role: 'listitem' });
                     
@@ -493,7 +513,6 @@
         // Event handlers
         function downloadCV() {
             safeExecute(() => {
-                // Replace with actual CV download functionality
                 alert('CV download functionality would be implemented here. Please add your actual CV file.');
             }, 'Error downloading CV');
         }
@@ -505,16 +524,18 @@
         }
 
         function viewProject(projectTitle) {
-    safeExecute(() => {
-        const project = projects.find(p => p.title === projectTitle);
-        if (project && project.link) {
-            window.open(project.link, '_blank');
-        } else {
-            alert(`Project "${projectTitle}" link not available.`);
+            safeExecute(() => {
+                const project = projects.find(p => p.title === projectTitle);
+                if (project && project.link) {
+                    window.open(project.link, '_blank');
+                } else if (project && project.title === "Sumlyzer – Smart PDF Summary & Insight Generator") {
+                    // Show detailed information about Sumlyzer since it's featured
+                    alert(`${project.title}\n\nThis is a featured project showcasing advanced document analysis capabilities:\n\n• Zero-backend client-side architecture\n• Custom text chunking algorithm\n• Real-time vector search\n• Interactive user interface\n• Multi-document processing\n\nTechnologies: ${project.technologies.join(', ')}`);
+                } else {
+                    alert(`Project "${projectTitle}" details available on request.`);
+                }
+            }, 'Error viewing project');
         }
-    }, 'Error viewing project');
-}
-
 
         // Initialize icons with error handling
         function initializeIcons() {
