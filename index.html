@@ -301,11 +301,16 @@
             position: absolute;
             bottom: -10px;
             left: 0;
-            width: 60px;
+            width: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary-pink), var(--primary-purple));
+            background: linear-gradient(90deg, var(--primary-pink), var(--primary-purple), var(--primary-cyan));
             border-radius: 2px;
             box-shadow: 0 0 10px var(--glow-pink);
+            transition: width 1s ease-out;
+        }
+
+        .fade-in.visible .section-title::after {
+            width: 100%;
         }
 
         /* Timeline */
